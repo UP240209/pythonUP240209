@@ -1,29 +1,28 @@
-import random 
+import random
 
-def list_of_hexa_colors(many=0):
-    if many == 0:
-        many = random.randint(1, 10)
-    hexas = "1,2,3,4,5,6,7,8,9,0,a,b,c,d,e,f".split(",")
-    hexCodes = []
-    for _ in range(many):
-        hexCodes.append("#" + ''.join([random.choice(hexas) for _ in range(6)]))
-    return hexCodes
+#1
+def list_of_hexa_colors(n):
+    hex_colors = []
+    for _ in range(n):
+        hex_color = '#' + ''.join(random.choices('0123456789abcdef', k=6))
+        hex_colors.append(hex_color)
+    return hex_colors
 
+#2
+def list_of_rgb_colors(n):
+    rgb_colors = []
+    for _ in range(n):
+        rgb_color = f'rgb({random.randint(0, 255)}, {random.randint(0, 255)}, {random.randint(0, 255)})'
+        rgb_colors.append(rgb_color)
+    return rgb_colors
 
-def list_of_rgb_colors(many=0):
-    if many == 0:
-        many = random.randint(1, 10)
-    rgbs = []
-    for _ in range(many):
-        rgbs.append(rgb_color_gen())
-    return rgbs
-
-
-def generate_colors(type_of_col, many):
-    if type_of_col == 'hexa':
-        return list_of_hexa_colors(many)
-    elif type_of_col == 'rgb':
-        return list_of_rgb_colors(many)
+#3
+def generate_colors(color_type, n):
+    if color_type == 'hexa':
+        return list_of_hexa_colors(n)
+    elif color_type == 'rgb':
+        return list_of_rgb_colors(n)
     else:
-        return "Invalid Input"
-    
+        raise ValueError("Invalid color type. Please choose 'hexa' or 'rgb'.")
+
+  
